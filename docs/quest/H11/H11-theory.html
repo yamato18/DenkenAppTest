@@ -28,27 +28,43 @@
 
     <div id="app" class="container">
         <br>
-        <p class="" style="font-size: 24px;">第 {{ currentQuestion.index }} 問</p>
-        <div class="row">
-            <img class="" :src="currentQuestion.image">
-            <p class="" style="font-size: 12px; text-align: right;">{{ currentQuestion.copyright }}</p>
-        </div>
-        <div class="row">
-            <input type="button" class="col btn btn-warning m-2"
-                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="1" @click="submitAnswer(1)">
-            <input type="button" class="col btn btn-warning m-2"
-                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="2" @click="submitAnswer(2)">
-            <input type="button" class="col btn btn-warning m-2"
-                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="3" @click="submitAnswer(3)">
-            <input type="button" class="col btn btn-warning m-2"
-                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="4" @click="submitAnswer(4)">
-            <input type="button" class="col btn btn-warning m-2"
-                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="5" @click="submitAnswer(5)">
+        <div v-if="currentScreen === 'quiz' || currentScreen === 'results'">
+            <p class="" style="font-size: 24px;">問 {{ currentQuestion.index }}</p>
+            <div class="row">
+                <img class="" :src="currentQuestion.image">
+                <p class="" style="font-size: 12px; text-align: right;">{{ currentQuestion.copyright }}</p>
+            </div>
+            <div class="row">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;"
+                    :disabled="currentScreen === 'results' || currentScreen === 'finish'" value="1"
+                    @click="submitAnswer(1)">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;"
+                    :disabled="currentScreen === 'results' || currentScreen === 'finish'" value="2"
+                    @click="submitAnswer(2)">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;"
+                    :disabled="currentScreen === 'results' || currentScreen === 'finish'" value="3"
+                    @click="submitAnswer(3)">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;"
+                    :disabled="currentScreen === 'results' || currentScreen === 'finish'" value="4"
+                    @click="submitAnswer(4)">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;"
+                    :disabled="currentScreen === 'results' || currentScreen === 'finish'" value="5"
+                    @click="submitAnswer(5)">
+            </div>
         </div>
         <br>
         <div v-if="currentScreen === 'results'">
-            <p class="" style="font-size: 24px; text-align: center;">回答：{{ currentSubmition }}（正答：{{
-                currentQuestion.answer }}）
+            <p style="font-size: 100px; color: red; text-align: center;">{{
+                currentQuestion.answer.includes(currentSubmition) ? '○' : '✕' }}</p>
+            <p class="" style="font-size: 24px; text-align: center;">
+                回答：{{ currentSubmition }}（正答：{{ currentQuestion.answer.length === 1 ?
+                currentQuestion.answer[0].toString() : currentQuestion.answer.slice(0, -1).join(", ") + "または" +
+                currentQuestion.answer.slice(-1)[0] }}）
             </p>
             <div class="row">
                 <img class="" :src="currentQuestion.comment">
@@ -91,10 +107,10 @@
                             { index: 7, image: "./H11-theory-image/H11-theory-7.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問７", answer: [2], comment: "./H11-theory-image/H11-theory-7-a.JPG" },
                             { index: 8, image: "./H11-theory-image/H11-theory-8.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問８", answer: [2], comment: "./H11-theory-image/H11-theory-8-a.JPG" },
                             { index: 9, image: "./H11-theory-image/H11-theory-9.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問９", answer: [3], comment: "./H11-theory-image/H11-theory-9-a.JPG" },
-                            { index: 10, image: "./H11-theory-image/H11-theory-10.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１０", answer: [4], comment: "./H11-theory-image/H11-theory-10-a.JPG" },
-                            { index: 11, image: "./H11-theory-image/H11-theory-11.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１１", answer: [1, 2], comment: "./H11-theory-image/H11-theory-11-a.JPG" },
-                            { index: 12, image: "./H11-theory-image/H11-theory-12.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１２", answer: [5], comment: "./H11-theory-image/H11-theory-12-a.JPG" },
-                            { index: 13, image: "./H11-theory-image/H11-theory-13.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１３", answer: [2], comment: "./H11-theory-image/H11-theory-13-a.JPG" }
+                            { index: 10, image: "./H11-theory-image/H11-theory-10.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問10", answer: [4], comment: "./H11-theory-image/H11-theory-10-a.JPG" },
+                            { index: 11, image: "./H11-theory-image/H11-theory-11.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問11", answer: [1, 2], comment: "./H11-theory-image/H11-theory-11-a.JPG" },
+                            { index: 12, image: "./H11-theory-image/H11-theory-12.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問12", answer: [5], comment: "./H11-theory-image/H11-theory-12-a.JPG" },
+                            { index: 13, image: "./H11-theory-image/H11-theory-13.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問13", answer: [2], comment: "./H11-theory-image/H11-theory-13-a.JPG" }
                         ],
                         userAnswers: []
                     }
@@ -125,15 +141,7 @@
                     } else {
                         this.currentScreen = 'finish';
                     }
-                },
-                getResultIcon(index) {
-                    return this.quiz.userAnswers[index] === this.quiz.questions[index].answer ? '◯' : '☓';
-                },
-                // resetQuiz() {
-                //     this.currentScreen = 'start';
-                //     this.currentQuestionIndex = 0;
-                //     this.quiz.userAnswers = [];
-                // }
+                }
             }
         }).mount('#app');
     </script>

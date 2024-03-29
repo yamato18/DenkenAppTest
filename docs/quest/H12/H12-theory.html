@@ -22,7 +22,7 @@
             　＜戻る
         </a>
         <span class="navbar-brand">
-            平成10年度　理論
+            平成12年度　理論
         </span>
     </nav>
 
@@ -76,7 +76,7 @@
             </div>
         </div>
         <div v-if="currentScreen === 'finish'">
-            <p class="" style="font-size: 24px; text-align: center;">正答数：{{ correctAnswers }}（問題数：13）</p>
+            <p class="" style="font-size: 24px; text-align: center;">正答数：{{ correctAnswers }}（問題数：16）</p>
             <div class="row">
                 <input type="button" class="col btn btn-warning m-2"
                     style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="問題選択へ"
@@ -98,19 +98,22 @@
                     currentQuestionIndex: 0,
                     quiz: {
                         questions: [
-                            { index: 1, image: "./H11-theory-image/H11-theory-1.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１", answer: [2], comment: "./H11-theory-image/H11-theory-1-a.JPG" },
-                            { index: 2, image: "./H11-theory-image/H11-theory-2.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問２", answer: [5], comment: "./H11-theory-image/H11-theory-2-a.JPG" },
-                            { index: 3, image: "./H11-theory-image/H11-theory-3.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問３", answer: [1], comment: "./H11-theory-image/H11-theory-3-a.JPG" },
-                            { index: 4, image: "./H11-theory-image/H11-theory-4.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問４", answer: [2], comment: "./H11-theory-image/H11-theory-4-a.JPG" },
-                            { index: 5, image: "./H11-theory-image/H11-theory-5.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問５", answer: [4], comment: "./H11-theory-image/H11-theory-5-a.JPG" },
-                            { index: 6, image: "./H11-theory-image/H11-theory-6.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問６", answer: [3], comment: "./H11-theory-image/H11-theory-6-a.JPG" },
-                            { index: 7, image: "./H11-theory-image/H11-theory-7.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問７", answer: [2], comment: "./H11-theory-image/H11-theory-7-a.JPG" },
-                            { index: 8, image: "./H11-theory-image/H11-theory-8.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問８", answer: [2], comment: "./H11-theory-image/H11-theory-8-a.JPG" },
-                            { index: 9, image: "./H11-theory-image/H11-theory-9.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問９", answer: [3], comment: "./H11-theory-image/H11-theory-9-a.JPG" },
-                            { index: 10, image: "./H11-theory-image/H11-theory-10.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問10", answer: [4], comment: "./H11-theory-image/H11-theory-10-a.JPG" },
-                            { index: 11, image: "./H11-theory-image/H11-theory-11.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問11", answer: [1, 2], comment: "./H11-theory-image/H11-theory-11-a.JPG" },
-                            { index: 12, image: "./H11-theory-image/H11-theory-12.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問12", answer: [5], comment: "./H11-theory-image/H11-theory-12-a.JPG" },
-                            { index: 13, image: "./H11-theory-image/H11-theory-13.JPG", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問13", answer: [2], comment: "./H11-theory-image/H11-theory-13-a.JPG" }
+                            { index: 1, image: "./H12-theory-image/H12-theory-1.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問１", answer: [5], comment: "./H12-theory-image/H12-theory-1-a.JPG" },
+                            { index: 2, image: "./H12-theory-image/H12-theory-2.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問２", answer: [2], comment: "./H12-theory-image/H12-theory-2-a.JPG" },
+                            { index: 3, image: "./H12-theory-image/H12-theory-3.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問３", answer: [5], comment: "./H12-theory-image/H12-theory-3-a.JPG" },
+                            { index: 4, image: "./H12-theory-image/H12-theory-4.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問４", answer: [5], comment: "./H12-theory-image/H12-theory-4-a.JPG" },
+                            { index: 5, image: "./H12-theory-image/H12-theory-5.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問５", answer: [4], comment: "./H12-theory-image/H12-theory-5-a.JPG" },
+                            { index: 6, image: "./H12-theory-image/H12-theory-6.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問６", answer: [3], comment: "./H12-theory-image/H12-theory-6-a.JPG" },
+                            { index: 7, image: "./H12-theory-image/H12-theory-7.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問７", answer: [3], comment: "./H12-theory-image/H12-theory-7-a.JPG" },
+                            { index: 8, image: "./H12-theory-image/H12-theory-8.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問８", answer: [1], comment: "./H12-theory-image/H12-theory-8-a.JPG" },
+                            { index: 9, image: "./H12-theory-image/H12-theory-9.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問９", answer: [1], comment: "./H12-theory-image/H12-theory-9-a.JPG" },
+                            { index: 10, image: "./H12-theory-image/H12-theory-10.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問10", answer: [4], comment: "./H12-theory-image/H12-theory-10-a.JPG" },
+                            { index: "11(a)", image: "./H12-theory-image/H12-theory-11.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問11(a)", answer: [2], comment: "./H12-theory-image/H12-theory-11-a.JPG" },
+                            { index: "11(b)", image: "./H12-theory-image/H12-theory-11.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問11(b)", answer: [4], comment: "./H12-theory-image/H12-theory-11-a.JPG" },
+                            { index: "12(a)", image: "./H12-theory-image/H12-theory-12.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問12(a)", answer: [4], comment: "./H12-theory-image/H12-theory-12-a(1).JPG" },
+                            { index: "12(b)", image: "./H12-theory-image/H12-theory-12.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問12(b)", answer: [1], comment: "./H12-theory-image/H12-theory-12-a(2).JPG" },
+                            { index: "13(a)", image: "./H12-theory-image/H12-theory-13.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問13(a)", answer: [3], comment: "./H12-theory-image/H12-theory-13-a.JPG" },
+                            { index: "13(b)", image: "./H12-theory-image/H12-theory-13.JPG", copyright: "出典：平成12年度 第三種電気主任技術者試験 理論 問13(b)", answer: [2], comment: "./H12-theory-image/H12-theory-13-a.JPG" }
                         ],
                         userAnswers: []
                     }
