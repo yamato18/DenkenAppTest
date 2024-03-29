@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>完全暗記電験３種</title>
+    <!-- ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+    <!-- フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <a class="navbar-brand" href="../../quest-list.html">
+            　＜戻る
+        </a>
+        <span class="navbar-brand">
+            平成11年度　理論
+        </span>
+    </nav>
+
+    <div id="app" class="container">
+        <br>
+        <p class="" style="font-size: 24px;">第 {{ currentQuestion.index }} 問</p>
+        <div class="row">
+            <img class="" :src="currentQuestion.image">
+            <p class="" style="font-size: 12px; text-align: right;">{{ currentQuestion.copyright }}</p>
+        </div>
+        <div class="row">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="1" @click="submitAnswer(1)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="2" @click="submitAnswer(2)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="3" @click="submitAnswer(3)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="4" @click="submitAnswer(4)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="5" @click="submitAnswer(5)">
+        </div>
+        <br>
+        <div v-if="currentScreen === 'results'">
+            <p class="" style="font-size: 24px; text-align: center;">回答：{{ currentSubmition }}（正答：{{
+                currentQuestion.answer }}）
+            </p>
+            <div class="row">
+                <img class="" :src="currentQuestion.comment">
+                <p class="" style="font-size: 12px; text-align: right;">{{ currentQuestion.copyright }}</p>
+            </div>
+            <div class="row">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="次へ" @click="nextQuiz()">
+            </div>
+        </div>
+        <div v-if="currentScreen === 'finish'">
+            <p class="" style="font-size: 24px; text-align: center;">正答数：{{ correctAnswers }}（問題数：13）</p>
+            <div class="row">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="問題選択へ"
+                    onclick="location.href='../../quest-list.html'">
+            </div>
+        </div>
+    </div>
+
+    <!-- ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.min.js"></script>
+
+    <script type="module">
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    currentScreen: 'quiz',
+                    currentQuestionIndex: 0,
+                    quiz: {
+                        questions: [
+                            { index: 1, image: "./H11-theory-image/H11-theory-1.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１", answer: [2], comment: "./H11-theory-image/H11-theory-1-a.jpg" },
+                            { index: 2, image: "./H11-theory-image/H11-theory-2.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問２", answer: [5], comment: "./H11-theory-image/H11-theory-2-a.jpg" },
+                            { index: 3, image: "./H11-theory-image/H11-theory-3.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問３", answer: [1], comment: "./H11-theory-image/H11-theory-3-a.jpg" },
+                            { index: 4, image: "./H11-theory-image/H11-theory-4.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問４", answer: [2], comment: "./H11-theory-image/H11-theory-4-a.jpg" },
+                            { index: 5, image: "./H11-theory-image/H11-theory-5.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問５", answer: [4], comment: "./H11-theory-image/H11-theory-5-a.jpg" },
+                            { index: 6, image: "./H11-theory-image/H11-theory-6.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問６", answer: [3], comment: "./H11-theory-image/H11-theory-6-a.jpg" },
+                            { index: 7, image: "./H11-theory-image/H11-theory-7.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問７", answer: [2], comment: "./H11-theory-image/H11-theory-7-a.jpg" },
+                            { index: 8, image: "./H11-theory-image/H11-theory-8.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問８", answer: [2], comment: "./H11-theory-image/H11-theory-8-a.jpg" },
+                            { index: 9, image: "./H11-theory-image/H11-theory-9.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問９", answer: [3], comment: "./H11-theory-image/H11-theory-9-a.jpg" },
+                            { index: 10, image: "./H11-theory-image/H11-theory-10.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１０", answer: [4], comment: "./H11-theory-image/H11-theory-10-a.jpg" },
+                            { index: 11, image: "./H11-theory-image/H11-theory-11.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１１", answer: [1, 2], comment: "./H11-theory-image/H11-theory-11-a.jpg" },
+                            { index: 12, image: "./H11-theory-image/H11-theory-12.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１２", answer: [5], comment: "./H11-theory-image/H11-theory-12-a.jpg" },
+                            { index: 13, image: "./H11-theory-image/H11-theory-13.jpg", copyright: "出典：平成11年度 第三種電気主任技術者試験 理論 問１３", answer: [2], comment: "./H11-theory-image/H11-theory-13-a.jpg" }
+                        ],
+                        userAnswers: []
+                    }
+                };
+            },
+            computed: {
+                currentQuestion() {
+                    return this.quiz.questions[this.currentQuestionIndex];
+                },
+                currentSubmition() {
+                    return this.quiz.userAnswers[this.currentQuestionIndex];
+                },
+                correctAnswers() {
+                    return this.quiz.userAnswers.reduce((sum, userAnswer, index) => {
+                        return sum + (this.quiz.questions[index].answer.includes(userAnswer) ? 1 : 0);
+                    }, 0);
+                }
+            },
+            methods: {
+                submitAnswer(answer) {
+                    this.quiz.userAnswers.push(answer);
+                    this.currentScreen = 'results';
+                },
+                nextQuiz() {
+                    if (this.currentQuestionIndex < this.quiz.questions.length - 1) {
+                        this.currentQuestionIndex++;
+                        this.currentScreen = 'quiz';
+                    } else {
+                        this.currentScreen = 'finish';
+                    }
+                },
+                getResultIcon(index) {
+                    return this.quiz.userAnswers[index] === this.quiz.questions[index].answer ? '◯' : '☓';
+                },
+                // resetQuiz() {
+                //     this.currentScreen = 'start';
+                //     this.currentQuestionIndex = 0;
+                //     this.quiz.userAnswers = [];
+                // }
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>

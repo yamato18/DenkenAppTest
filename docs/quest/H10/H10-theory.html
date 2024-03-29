@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>完全暗記電験３種</title>
+    <!-- ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+    <!-- フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <a class="navbar-brand" href="../../quest-list.html">
+            　＜戻る
+        </a>
+        <span class="navbar-brand">
+            平成10年度　理論
+        </span>
+    </nav>
+
+    <div id="app" class="container">
+        <br>
+        <p class="" style="font-size: 24px;">第 {{ currentQuestion.index }} 問</p>
+        <div class="row">
+            <img class="" :src="currentQuestion.image">
+            <p class="" style="font-size: 12px; text-align: right;">{{ currentQuestion.copyright }}</p>
+        </div>
+        <div class="row">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="1" @click="submitAnswer(1)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="2" @click="submitAnswer(2)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="3" @click="submitAnswer(3)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="4" @click="submitAnswer(4)">
+            <input type="button" class="col btn btn-warning m-2"
+                style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="5" @click="submitAnswer(5)">
+        </div>
+        <br>
+        <div v-if="currentScreen === 'results'">
+            <p class="" style="font-size: 24px; text-align: center;">回答：{{ currentSubmition }}（正答：{{
+                currentQuestion.answer }}）
+            </p>
+            <div class="row">
+                <img class="" :src="currentQuestion.comment">
+                <p class="" style="font-size: 12px; text-align: right;">{{ currentQuestion.copyright }}</p>
+            </div>
+            <div class="row">
+                <input type="button" class="col btn btn-warning m-2"
+                    style="--bs-btn-padding-y: 10px; --bs-btn-font-size: 24px;" value="次へ" @click="nextQuiz()">
+            </div>
+        </div>
+    </div>
+
+    <!-- ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.min.js"></script>
+
+    <script type="module">
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    currentScreen: 'quiz',
+                    currentQuestionIndex: 0,
+                    quiz: {
+                        questions: [
+                            { index: 1, image: "./H10-theory-image/H10-theory-1.jpg", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問１", answer: 1, comment: "./H10-theory-image/H10-theory-1.jpg" },
+                            { index: 2, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問２", answer: 1, comment: "" },
+                            { index: 3, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問３", answer: 2, comment: "" },
+                            { index: 4, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問４", answer: 3, comment: "" },
+                            { index: 5, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問５", answer: 5, comment: "" },
+                            { index: 6, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問６", answer: 4, comment: "" },
+                            { index: 7, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問７", answer: 4, comment: "" },
+                            { index: 8, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問８", answer: 3, comment: "" },
+                            { index: 9, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問９", answer: 5, comment: "" },
+                            { index: 10, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問１０", answer: 3, comment: "" },
+                            { index: 11, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問１１", answer: 4, comment: "" },
+                            { index: 12, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問１２", answer: 5, comment: "" },
+                            { index: 13, image: "", copyright: "出典：平成10年度 第三種電気主任技術者試験 理論 問１３", answer: 3, comment: "" }
+                        ],
+                        userAnswers: []
+                    }
+                };
+            },
+            computed: {
+                currentQuestion() {
+                    return this.quiz.questions[this.currentQuestionIndex];
+                },
+                currentSubmition() {
+                    return this.quiz.userAnswers[this.currentQuestionIndex];
+                },
+                currentAnswers() {
+                    return this.quiz.userAnswers.reduce((sum, userAnswer, index) => {
+                        return sum + (userAnswer === this.quiz.questions[index].answer ? 1 : 0);
+                    }, 0);
+                }
+            },
+            methods: {
+                submitAnswer(answer) {
+                    this.quiz.userAnswers.push(answer);
+                    this.currentScreen = 'results';
+                },
+                nextQuiz() {
+                    if (this.currentQuestionIndex < this.quiz.questions.length - 1) {
+                        this.currentQuestionIndex++;
+                        this.currentScreen = 'quiz';
+                    }
+                },
+                getResultIcon(index) {
+                    return this.quiz.userAnswers[index] === this.quiz.questions[index].answer ? '◯' : '☓';
+                },
+                // resetQuiz() {
+                //     this.currentScreen = 'start';
+                //     this.currentQuestionIndex = 0;
+                //     this.quiz.userAnswers = [];
+                // }
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>
